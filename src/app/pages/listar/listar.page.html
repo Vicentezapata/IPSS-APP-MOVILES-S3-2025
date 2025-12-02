@@ -1,0 +1,190 @@
+<!-- ============================================ -->
+<!-- HEADER (Cabecera superior de la aplicación) -->
+<!-- ============================================ -->
+<ion-header [translucent]="true" class="ion-no-border">
+  <!-- Barra de herramientas en la parte superior -->
+  <ion-toolbar>
+    <!-- Título principal del header -->
+    <ion-title>
+      <div class="header-content">
+        <!-- Icono decorativo de un cubo 3D -->
+        <ion-icon name="cube-outline" class="header-icon"></ion-icon>
+        Impresiones 3D
+      </div>
+    </ion-title>
+    
+    <!-- Botones en el lado derecho del header (slot="end" = derecha) -->
+    <ion-buttons slot="end">
+      <!-- Botón para agregar nuevos pedidos -->
+      <ion-button>
+        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- ================================================ -->
+<!-- CONTENIDO PRINCIPAL (Área desplazable de la app) -->
+<!-- ================================================ -->
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <!-- Header secundario que se colapsa al hacer scroll -->
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Impresiones 3D</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- ========================================= -->
+  <!-- SECCIÓN DE ESTADÍSTICAS (Mini tarjetas)   -->
+  <!-- ========================================= -->
+  <div class="stats-section">
+    
+    <!-- Tarjeta 1: Muestra el total de pedidos -->
+    <div class="stat-card">
+      <!-- Icono de impresora -->
+      <ion-icon name="print-outline" class="stat-icon"></ion-icon>
+      <div class="stat-info">
+        <!-- Número de pedidos (usa la variable items.length del TypeScript) -->
+        <span class="stat-number">{{ items.length }}</span>
+        <!-- Etiqueta descriptiva -->
+        <span class="stat-label">Pedidos</span>
+      </div>
+    </div>
+    
+    <!-- Tarjeta 2: Muestra pedidos activos -->
+    <div class="stat-card">
+      <!-- Icono de reloj -->
+      <ion-icon name="time-outline" class="stat-icon"></ion-icon>
+      <div class="stat-info">
+        <!-- Número de pedidos activos (por ahora usa items.length) -->
+        <span class="stat-number">{{ items.length }}</span>
+        <!-- Etiqueta descriptiva -->
+        <span class="stat-label">Activos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================== -->
+  <!-- ENCABEZADO DE LA SECCIÓN PRINCIPAL -->
+  <!-- ================================== -->
+  <div class="section-header">
+    <h2>Pedidos Recientes</h2>
+    <!-- Muestra el conteo total de pedidos -->
+    <p>{{ items.length }} pedidos en total</p>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- GRID DE TARJETAS (Lista de todos los pedidos) -->
+  <!-- ========================================= -->
+  <div class="cards-grid">
+    
+    <!-- *ngFor: Bucle que repite esta tarjeta por cada item en el array 'items' -->
+    <!-- 'let i = index' guarda la posición actual del elemento (0, 1, 2, 3...) -->
+    <ion-card 
+      *ngFor="let item of items; let i = index" 
+      class="print-card"
+      [class.card-animation]="true"
+      [style.animation-delay]="i * 0.1 + 's'">
+      
+      <!-- ===================================== -->
+      <!-- ICONO DECORATIVO FLOTANTE (parte superior) -->
+      <!-- ===================================== -->
+      <div class="card-icon-wrapper">
+        <!-- Icono de cubo 3D que flota arriba de la tarjeta -->
+        <ion-icon name="cube" class="card-main-icon"></ion-icon>
+      </div>
+
+      <!-- ===================================== -->
+      <!-- HEADER DE LA TARJETA (Título y subtítulo) -->
+      <!-- ===================================== -->
+      <ion-card-header>
+        <div class="card-header-content">
+          
+          <!-- Sección del título -->
+          <div class="card-title-section">
+            <!-- Subtítulo: Muestra el ID del pedido -->
+            <ion-card-subtitle>
+              <ion-icon name="pricetag-outline" class="inline-icon"></ion-icon>
+              Pedido #{{ item.id }}
+            </ion-card-subtitle>
+            
+            <!-- Título principal: Muestra el nombre del pedido -->
+            <ion-card-title>{{ item.name }}</ion-card-title>
+          </div>
+          
+          <!-- Badge de estado (punto verde) -->
+          <div class="card-badge">
+            <!-- Icono circular verde que indica estado activo -->
+            <ion-icon name="ellipse" color="success"></ion-icon>
+          </div>
+        </div>
+      </ion-card-header>
+
+      <!-- ===================================== -->
+      <!-- CONTENIDO DE LA TARJETA -->
+      <!-- ===================================== -->
+      <ion-card-content>
+        
+        <!-- Descripción del pedido -->
+        <div class="card-description">
+          <!-- Icono de documento -->
+          <ion-icon name="document-text-outline" class="description-icon"></ion-icon>
+          <!-- Texto de la descripción del pedido -->
+          <p>{{ item.description }}</p>
+        </div>
+
+        <!-- Metadata (información adicional): Fecha y tiempo estimado -->
+        <div class="card-meta">
+          <!-- Item 1: Fecha -->
+          <div class="meta-item">
+            <ion-icon name="calendar-outline"></ion-icon>
+            <span>Hoy</span>
+          </div>
+          
+          <!-- Item 2: Tiempo estimado -->
+          <div class="meta-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>2-3 hrs</span>
+          </div>
+        </div>
+
+        <!-- ===================================== -->
+        <!-- BOTONES DE ACCIÓN -->
+        <!-- ===================================== -->
+        <div class="card-actions">
+          
+          <!-- Botón principal: Ver detalles del pedido -->
+          <ion-button fill="solid" size="default" class="action-button view-button">
+            <ion-icon slot="start" name="eye-sharp"></ion-icon>
+            Ver detalles
+          </ion-button>
+          
+          <!-- Botón secundario: Eliminar pedido (solo icono) -->
+          <ion-button fill="clear" size="default" class="action-button delete-button" color="danger">
+            <ion-icon slot="icon-only" name="trash-sharp"></ion-icon>
+          </ion-button>
+        </div>
+        
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- ESTADO VACÍO (Cuando NO hay pedidos)      -->
+  <!-- ========================================= -->
+  <!-- *ngIf: Solo muestra esto SI items.length es 0 (no hay pedidos) -->
+  <div class="empty-state" *ngIf="items.length === 0">
+    <!-- Icono grande de cubo -->
+    <ion-icon name="cube-outline" class="empty-icon"></ion-icon>
+    <!-- Título -->
+    <h3>No hay pedidos</h3>
+    <!-- Mensaje -->
+    <p>Comienza agregando tu primera impresión 3D</p>
+    <!-- Botón para agregar el primer pedido -->
+    <ion-button fill="solid" shape="round">
+      <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+      Agregar pedido
+    </ion-button>
+  </div>
+</ion-content>

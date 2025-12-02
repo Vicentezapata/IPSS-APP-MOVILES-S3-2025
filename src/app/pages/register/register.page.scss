@@ -1,0 +1,277 @@
+// Contenido
+ion-content {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.register-container {
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+// Header Section
+.header-section {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeInDown 0.6s ease-out;
+
+  .logo-icon {
+    font-size: 70px;
+    color: white;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  }
+
+  .title {
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 10px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    margin: 5px 0;
+  }
+}
+
+// Register Card
+.register-card {
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.6s ease-out;
+
+  ion-card-content {
+    padding: 30px 20px;
+  }
+}
+
+// Input Items
+.input-item {
+  margin-bottom: 18px;
+  --background: #f5f5f5;
+  --border-radius: 12px;
+  --padding-start: 15px;
+  --padding-end: 15px;
+  --min-height: 56px;
+  --color: #2d3748;
+
+  .input-icon {
+    color: #667eea;
+    font-size: 22px;
+    margin-right: 10px;
+  }
+
+  ion-input {
+    --padding-start: 10px;
+    --color: #2d3748;
+    --placeholder-color: #718096;
+    --placeholder-opacity: 0.7;
+  }
+}
+
+// Terms Section
+.terms-section {
+  margin: 20px 0 25px 0;
+
+  .checkbox-item {
+    --background: transparent;
+    --padding-start: 0;
+
+    ion-checkbox {
+      --size: 20px;
+      --checkbox-background-checked: #667eea;
+      margin-right: 10px;
+      align-self: flex-start;
+      margin-top: 2px;
+    }
+
+    .terms-text {
+      font-size: 13px;
+      color: #4a5568;
+      line-height: 1.5;
+
+      strong {
+        color: #667eea;
+      }
+    }
+  }
+}
+
+// Register Button
+.register-button {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --border-radius: 28px;
+  --box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  height: 56px;
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 10px;
+  text-transform: none;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    --box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  }
+}
+
+// Divider
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+  color: #999;
+  font-size: 13px;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e0e0e0;
+  }
+
+  span {
+    padding: 0 15px;
+  }
+}
+
+// Social Buttons
+.social-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+
+  .social-button {
+    --border-color: #e0e0e0;
+    --border-width: 1.5px;
+    --border-radius: 28px;
+    height: 48px;
+    text-transform: none;
+    font-weight: 500;
+
+    ion-icon {
+      font-size: 20px;
+    }
+
+    &:hover {
+      --background: #f5f5f5;
+    }
+  }
+}
+
+// Login Section
+.login-section {
+  text-align: center;
+  margin-top: 25px;
+  animation: fadeIn 0.8s ease-out;
+
+  p {
+    color: white;
+    margin: 0 0 5px 0;
+    font-size: 14px;
+  }
+
+  .login-link-button {
+    --color: white;
+    font-size: 15px;
+    text-transform: none;
+    text-decoration: underline;
+  }
+}
+
+// Info Section
+.info-section {
+  text-align: center;
+  margin-top: 20px;
+
+  ion-chip {
+    --background: rgba(255, 255, 255, 0.2);
+    --color: white;
+    backdrop-filter: blur(10px);
+    font-size: 12px;
+
+    ion-icon {
+      color: white;
+    }
+  }
+}
+
+// Error message: respetar saltos de línea y ocupar ancho completo
+.error-message {
+  display: block;
+  white-space: pre-line; // Convierte "\n" en saltos de línea visuales
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+// Animations
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Responsive Design
+@media (max-width: 576px) {
+  .register-container {
+    padding: 15px;
+  }
+
+  .header-section {
+    .logo-icon {
+      font-size: 55px;
+    }
+
+    .title {
+      font-size: 24px;
+    }
+  }
+
+  .register-card ion-card-content {
+    padding: 25px 15px;
+  }
+
+  .input-item {
+    margin-bottom: 15px;
+  }
+
+  .social-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .terms-section .checkbox-item .terms-text {
+    font-size: 12px;
+  }
+}

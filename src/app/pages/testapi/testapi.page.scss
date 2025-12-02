@@ -1,0 +1,392 @@
+// ================================================
+// FONDO CON GRADIENTE MODERNO
+// ================================================
+ion-content {
+  --background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+// ================================================
+// HEADER PERSONALIZADO
+// ================================================
+ion-header {
+  ion-toolbar {
+    --background: rgba(255, 255, 255, 0.1);
+    --color: white;
+    backdrop-filter: blur(10px);
+    --border-width: 0;
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+
+      .header-icon {
+        font-size: 24px;
+      }
+    }
+
+    ion-buttons ion-button {
+      --color: white;
+    }
+  }
+}
+
+// ================================================
+// TARJETA DE ESTADÍSTICAS (Glassmorphism)
+// ================================================
+.stats-glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: fadeInDown 0.5s ease-out;
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .stat-icon {
+      font-size: 36px;
+      color: white;
+      opacity: 0.9;
+    }
+
+    .stat-info {
+      display: flex;
+      flex-direction: column;
+
+      .stat-number {
+        font-size: 28px;
+        font-weight: 700;
+        color: white;
+        line-height: 1;
+      }
+
+      .stat-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.8);
+        margin-top: 4px;
+      }
+    }
+  }
+}
+
+// ================================================
+// SPINNER DE CARGA
+// ================================================
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  animation: fadeIn 0.5s ease-out;
+
+  ion-spinner {
+    --color: white;
+    transform: scale(1.5);
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+// ================================================
+// GRID DE TARJETAS DE USUARIOS
+// ================================================
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  padding-bottom: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ================================================
+// TARJETA DE USUARIO (Glassmorphism)
+// ================================================
+.user-glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  overflow: visible;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+
+  &.card-animation {
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  // Avatar con iniciales
+  .avatar-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: -30px;
+    margin-bottom: 10px;
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: white;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .rol-badge {
+      position: absolute;
+      bottom: -5px;
+      right: calc(50% - 60px);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  // Header de la tarjeta
+  ion-card-header {
+    text-align: center;
+    padding: 0 16px 12px 16px;
+
+    .user-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+      margin: 0;
+    }
+
+    .user-rut {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 4px;
+
+      .inline-icon {
+        font-size: 14px;
+      }
+    }
+  }
+
+  // Contenido de la tarjeta
+  ion-card-content {
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      transition: background 0.2s;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .info-icon {
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.9);
+        flex-shrink: 0;
+      }
+
+      .info-text {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.95);
+        line-height: 1.4;
+        word-break: break-word;
+      }
+    }
+
+    // Botones de acción
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+      .action-btn {
+        flex: 1;
+        --color: white;
+        --background: rgba(255, 255, 255, 0.1);
+        --border-radius: 12px;
+        text-transform: none;
+        font-weight: 500;
+        font-size: 13px;
+        margin: 0;
+
+        &:hover {
+          --background: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+  }
+}
+
+// ================================================
+// ESTADO VACÍO
+// ================================================
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  animation: fadeIn 0.8s ease-out;
+
+  .empty-glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+    .empty-icon {
+      font-size: 100px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+      margin: 0 0 10px 0;
+    }
+
+    p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      margin: 0 0 24px 0;
+    }
+
+    ion-button {
+      --background: rgba(255, 255, 255, 0.2);
+      --color: white;
+      --border-radius: 24px;
+      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      height: 48px;
+      font-weight: 600;
+
+      &:hover {
+        --background: rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+}
+
+// ================================================
+// ANIMACIONES
+// ================================================
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// ================================================
+// RESPONSIVE
+// ================================================
+@media (max-width: 576px) {
+  .stats-glass-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+
+    .stat-item {
+      justify-content: center;
+    }
+  }
+
+  .user-glass-card {
+    .avatar-wrapper {
+      margin-top: -25px;
+
+      .avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 28px;
+      }
+    }
+
+    ion-card-header .user-name {
+      font-size: 18px;
+    }
+  }
+
+  .empty-state .empty-glass-card {
+    padding: 40px 20px;
+
+    .empty-icon {
+      font-size: 80px;
+    }
+  }
+}

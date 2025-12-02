@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>testgeo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">testgeo</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <!-- NUEVO: Mostrar ubicación GPS si existe -->
+  <ion-list>
+    <ion-item>
+      <ion-button expand="block" color="success" (click)="obtenerUbicacion()" [disabled]="obteniendoUbicacion">
+        <ion-icon name="location-outline" slot="start"></ion-icon>
+        {{ obteniendoUbicacion ? 'Obteniendo GPS...' : 'Obtener Ubicación' }}
+      </ion-button>
+    </ion-item>
+    <ion-item *ngIf="ubicacion">
+      <div style="text-align: center; width: 100%;">
+        <p><strong>📍 Ubicación GPS:</strong></p>
+        <p><strong>Latitud:</strong> {{ ubicacion?.latitude }}</p>
+        <p><strong>Longitud:</strong> {{ ubicacion?.longitude }}</p>
+        <p><strong>Precisión:</strong> {{ ubicacion?.accuracy }} metros</p>
+
+        <!-- Botón para abrir en Google Maps -->
+        <ion-button size="small" fill="outline" [href]="obtenerEnlaceMaps()" target="_blank">
+          <ion-icon name="map-outline" slot="start"></ion-icon>
+          Ver en Maps
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

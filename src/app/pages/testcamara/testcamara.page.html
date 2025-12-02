@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>testcamara</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">testcamara</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card>
+    <ion-card-content>
+      <ion-button (click)="tomarFoto()">Tomar Foto</ion-button>
+      <div *ngFor="let foto of fotos">
+        <h3>{{ foto.nombreArchivo }} - {{ foto.fechaCaptura | date:'short' }}</h3>
+        <img [src]="foto.base64Data" />
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

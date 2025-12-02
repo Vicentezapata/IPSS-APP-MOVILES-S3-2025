@@ -1,0 +1,142 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="register-container">
+    <!-- Logo y Header -->
+    <div class="header-section">
+      <ion-icon name="cube-outline" class="logo-icon"></ion-icon>
+      <h1 class="title">Crear Cuenta</h1>
+      <p class="subtitle">Únete a 3D Print Manager</p>
+    </div>
+
+    <!-- Formulario de Registro -->
+    <ion-card class="register-card">
+      <ion-card-content>
+        <form (ngSubmit)="registrarEnFirebase()">
+          <!-- Campo de Nombre Completo -->
+          <ion-item lines="none" class="input-item">
+            <ion-icon name="person-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="nombre"
+              name="nombre"
+              label="Nombre Completo"
+              label-placement="floating"
+              type="text"
+              placeholder="Juan Pérez"
+              required
+              autocomplete="name"
+            ></ion-input>
+          </ion-item>
+
+          <!-- Campo de Email -->
+          <ion-item lines="none" class="input-item">
+            <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="email"
+              name="email"
+              label="Correo Electrónico"
+              label-placement="floating"
+              type="email"
+              placeholder="correo@ejemplo.com"
+              required
+              autocomplete="email"
+            ></ion-input>
+          </ion-item>
+
+          <!-- Campo de Teléfono -->
+          <ion-item lines="none" class="input-item">
+            <ion-icon name="call-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="telefono"
+              name="telefono"
+              label="Teléfono"
+              label-placement="floating"
+              type="tel"
+              placeholder="+56 9 1234 5678"
+              autocomplete="tel"
+            ></ion-input>
+          </ion-item>
+
+          <!-- Campo de Contraseña -->
+          <ion-item lines="none" class="input-item">
+            <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="password"
+              name="password"
+              label="Contraseña"
+              label-placement="floating"
+              type="password"
+              placeholder="Mínimo 8 caracteres"
+              required
+              autocomplete="new-password"
+            ></ion-input>
+          </ion-item>
+
+          <!-- Campo de Confirmar Contraseña -->
+          <ion-item lines="none" class="input-item">
+            <ion-icon name="lock-open-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="confirmarPassword"
+              name="confirmarPassword"
+              label="Confirmar Contraseña"
+              label-placement="floating"
+              type="password"
+              placeholder="Repite tu contraseña"
+              required
+              autocomplete="new-password"
+            ></ion-input>
+          </ion-item>
+          <ion-text class="error-message" *ngIf="errorMessage" color="danger">{{ errorMessage }}</ion-text>
+
+          <!-- Términos y condiciones -->
+          <div class="terms-section">
+            <ion-item lines="none" class="checkbox-item">
+              <ion-checkbox slot="start" labelPlacement="end" [(ngModel)]="aceptarTerminos" name="aceptarTerminos">
+                <span class="terms-text">
+                  Acepto los <strong>Términos y Condiciones</strong> y la <strong>Política de Privacidad</strong>
+                </span>
+              </ion-checkbox>
+            </ion-item>
+          </div>
+
+          <!-- Botón de Registro -->
+          <ion-button type="submit" expand="block" shape="round" class="register-button">
+            <ion-icon name="person-add-outline" slot="start"></ion-icon>
+            Crear Cuenta
+          </ion-button>
+
+          <!-- Divider -->
+          <div class="divider">
+            <span>o regístrate con</span>
+          </div>
+
+          <!-- Botones de Social Register -->
+          <div class="social-buttons">
+            <ion-button fill="outline" shape="round" class="social-button">
+              <ion-icon name="logo-google" slot="start"></ion-icon>
+              Google
+            </ion-button>
+            <ion-button fill="outline" shape="round" class="social-button">
+              <ion-icon name="logo-apple" slot="start"></ion-icon>
+              Apple
+            </ion-button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Footer de Login -->
+    <div class="login-section">
+      <p>¿Ya tienes cuenta?</p>
+      <ion-button fill="clear" class="login-link-button">
+        <strong>Inicia Sesión</strong>
+      </ion-button>
+    </div>
+
+    <!-- Información adicional -->
+    <div class="info-section">
+      <ion-chip color="primary" outline="true">
+        <ion-icon name="shield-checkmark-outline"></ion-icon>
+        <ion-label>Registro seguro y encriptado</ion-label>
+      </ion-chip>
+    </div>
+  </div>
+</ion-content>

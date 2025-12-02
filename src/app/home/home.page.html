@@ -1,20 +1,89 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login-container">
+    <!-- Logo y Header -->
+    <div class="header-section">
+      <ion-icon name="cube-outline" class="logo-icon"></ion-icon>
+      <h1 class="title">3D Print Manager CON LIVE RELOAD</h1>
+      <p class="subtitle">Sistema de Registro de Impresiones 3D</p>
+    </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <!-- Formulario de Login -->
+    <ion-card class="login-card">
+      <ion-card-content>
+        <form (ngSubmit)="login()">
+          <!-- Campo de Email -->
+          <ion-item lines="none" class="input-item">
+            <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="email"
+              name="email"
+              label="Correo Electrónico"
+              label-placement="floating"
+              type="email"
+              placeholder="usuario@ejemplo.com"
+              required
+              autocomplete="email"
+            ></ion-input>
+          </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+          <!-- Campo de Contraseña -->
+          <ion-item lines="none" class="input-item">
+            <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="password"
+              name="password"
+              label="Contraseña"
+              label-placement="floating"
+              type="password"
+              placeholder="Ingresa tu contraseña"
+              required
+              autocomplete="current-password"
+            ></ion-input>
+          </ion-item>
+
+          <!-- Recordar sesión -->
+          <div class="options-section">
+            <ion-item lines="none" class="checkbox-item">
+              <ion-checkbox slot="start" labelPlacement="end">
+                Recordar sesión
+              </ion-checkbox>
+            </ion-item>
+            <ion-button fill="clear" size="small" class="forgot-password">
+              ¿Olvidaste tu contraseña?
+            </ion-button>
+          </div>
+
+          <ion-text color="danger" *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </ion-text>
+
+          <!-- Botón de Login -->
+          <ion-button type="submit" expand="block" shape="round" class="login-button">
+            <ion-icon name="log-in-outline" slot="start"></ion-icon>
+            Iniciar Sesión
+          </ion-button>
+          <ion-button fill="clear" expand="block" shape="round" class="camera-button" (click)="irCamara()">
+            <ion-icon name="camera-outline" slot="start"></ion-icon>
+            Probar Cámara
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Footer de Registro -->
+    <div class="register-section">
+      <p>¿No tienes cuenta?</p>
+      <ion-button (click)="irRegister()" fill="clear" class="register-button">
+        <strong>Regístrate aquí</strong>
+      </ion-button>
+    </div>
+
+    <!-- Información adicional -->
+    <div class="info-section">
+      <ion-chip color="primary" outline="true">
+        <ion-icon name="shield-checkmark-outline"></ion-icon>
+        <ion-label>Conexión segura</ion-label>
+      </ion-chip>
+    </div>
   </div>
 </ion-content>

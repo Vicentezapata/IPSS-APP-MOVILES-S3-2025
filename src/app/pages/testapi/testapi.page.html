@@ -1,0 +1,141 @@
+<!-- ================================================ -->
+<!-- HEADER (Cabecera con gradiente) -->
+<!-- ================================================ -->
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      <div class="header-content">
+        <ion-icon name="people-outline" class="header-icon"></ion-icon>
+        Gestión de Usuarios
+      </div>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cargarUsuarios()">
+        <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- ================================================ -->
+<!-- CONTENIDO PRINCIPAL -->
+<!-- ================================================ -->
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <!-- Header secundario colapsable -->
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Usuarios</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- ========================================= -->
+  <!-- ESTADÍSTICAS (Tarjeta de resumen) -->
+  <!-- ========================================= -->
+  <div class="stats-glass-card">
+    <div class="stat-item">
+      <ion-icon name="people" class="stat-icon"></ion-icon>
+      <div class="stat-info">
+        <span class="stat-number">{{ usuarios.length }}</span>
+        <span class="stat-label">Total Usuarios</span>
+      </div>
+    </div>
+    <div class="stat-item">
+      <ion-icon name="shield-checkmark" class="stat-icon"></ion-icon>
+      <div class="stat-info">
+        <span class="stat-number">{{ getAdminCount() }}</span>
+        <span class="stat-label">Administradores</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- SPINNER DE CARGA -->
+  <!-- ========================================= -->
+  <div class="loading-container" *ngIf="cargando">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+    <p>Cargando usuarios...</p>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- GRID DE TARJETAS DE USUARIOS (Glassmorphism) -->
+  <!-- ========================================= -->
+  <div class="users-grid" *ngIf="!cargando">
+    
+    <!-- Card por cada usuario -->
+    <ion-card 
+      *ngFor="let u of usuarios; let i = index" 
+      class="user-glass-card"
+      [class.card-animation]="true"
+      [style.animation-delay]="i * 0.05 + 's'">
+      
+      <!-- Avatar decorativo con iniciales -->
+      <div class="avatar-wrapper">
+        <div class="avatar">
+          {{ getInitials(u.nombre, u.apellido) }}
+        </div>
+        <!-- Badge de rol -->
+        <ion-badge [color]="getRolColor(u.rol)" class="rol-badge">
+          {{ u.rol }}
+        </ion-badge>
+      </div>
+
+      <ion-card-header>
+        <ion-card-title class="user-name">
+          {{ u.nombre }} {{ u.apellido }}
+        </ion-card-title>
+        <ion-card-subtitle class="user-rut">
+          <ion-icon name="card-outline" class="inline-icon"></ion-icon>
+          {{ u.rut }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <!-- Email -->
+        <div class="info-row">
+          <ion-icon name="mail-outline" class="info-icon"></ion-icon>
+          <span class="info-text">{{ u.email }}</span>
+        </div>
+
+        <!-- Fecha de creación (si existe) -->
+        <div class="info-row" *ngIf="u.creatAt">
+          <ion-icon name="calendar-outline" class="info-icon"></ion-icon>
+          <span class="info-text">{{ formatDate(u.creatAt) }}</span>
+        </div>
+
+        <!-- Última actualización (si existe) -->
+        <div class="info-row" *ngIf="u.updateAt">
+          <ion-icon name="time-outline" class="info-icon"></ion-icon>
+          <span class="info-text">Actualizado: {{ formatDate(u.updateAt) }}</span>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="action-buttons">
+          <ion-button fill="clear" size="small" class="action-btn">
+            <ion-icon slot="start" name="eye-outline"></ion-icon>
+            Ver
+          </ion-button>
+          <ion-button fill="clear" size="small" class="action-btn" color="warning">
+            <ion-icon slot="start" name="create-outline"></ion-icon>
+            Editar
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- ESTADO VACÍO (Cuando no hay usuarios) -->
+  <!-- ========================================= -->
+  <div class="empty-state" *ngIf="!cargando && usuarios.length === 0">
+    <div class="empty-glass-card">
+      <ion-icon name="people-outline" class="empty-icon"></ion-icon>
+      <h3>No hay usuarios</h3>
+      <p>No se encontraron usuarios en el sistema</p>
+      <ion-button fill="solid" shape="round" (click)="cargarUsuarios()">
+        <ion-icon slot="start" name="refresh-outline"></ion-icon>
+        Recargar
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
